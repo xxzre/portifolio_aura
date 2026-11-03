@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Renato Lima | Portfólio</title>
+    <!-- Fonts: DM Serif Display (Headings), Lora (Body), Space Mono (Labels/Nav) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Lora:ital,wght@0,400;0,500;1,400&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Iconify for Icons -->
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <style type="text/tailwindcss">
+    @layer utilities {
+        .font-display { font-family: 'DM Serif Display', serif; }
+        .font-body { font-family: 'Lora', serif; }
+        .font-mono { font-family: 'Space Mono', monospace; }
+    }
+    </style>
+    <style>
+    /* Base Variables & Overrides */
+    :root {
+        --bg-cream: #F5F0E8;
+        --text-charcoal: #1A1A1A;
+        --accent-terra: #C4562A;
+    }
+    body {
+        background-color: var(--bg-cream);
+        color: var(--text-charcoal);
+        overflow-x: hidden;
+    }
+    /* Typography Refinements */
+    h1, h2, h3, h4, h5, h6 { font-weight: 400; }
+    /* Marquee Animation */
+    .marquee-container {
+        display: flex;
+        overflow: hidden;
+        white-space: nowrap;
+        width: 100vw;
+        position: relative;
+        left: 50%;
+        right: 50%;
+        margin-left: -50vw;
+        margin-right: -50vw;
+        border-top: 1px solid rgba(26, 26, 26, 0.1);
+        border-bottom: 1px solid rgba(26, 26, 26, 0.1);
+        background-color: var(--bg-cream);
+    }
+    .marquee-content {
+        display: flex;
+        align-items: center;
+        animation: marquee 40s linear infinite;
+    }
+    .marquee-container:hover .marquee-content {
+        animation-play-state: paused;
+    }
+    @keyframes marquee {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(-50%); }
+    }
+    /* Micro-interactions */
+    .nav-link { position: relative; }
+    .nav-link::after {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 1px;
+        bottom: -4px;
+        left: 0;
+        background-color: var(--text-charcoal);
+        transition: width 0.3s ease;
+    }
+    .nav-link:hover::after { width: 100%; }
+    .btn-fill {
+        position: relative;
+        overflow: hidden;
+        z-index: 1;
+        border-radius: 100px;
+    }
+    .btn-fill::before {
+        content: '';
+        position: absolute;
+        top: 0; left: 0; right: 0; bottom: 0;
+        background-color: var(--text-charcoal);
+        z-index: -1;
+        transform: scaleY(0);
+        transform-origin: bottom;
+        transition: transform 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+    }
+    .btn-fill:hover::before {
+        transform: scaleY(1);
+    }
+    /* Scroll Fade Up Animation */
+    .fade-up {
+        opacity: 0;
+        transform: translateY(28px);
+        transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+    .fade-up.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    /* Suppress duplicate navbar when rendered inside the catalog iframe */
+    html.in-catalog > body > nav {
+        display: none !important;
+    }
+    </style>
+    <script>
+    if (window.self !== window.top) {
+        document.documentElement.classList.add('in-catalog');
+    }
+    </script>
+</head>
+<body class="antialiased selection:bg-[#C4562A] selection:text-[#F5F0E8]">
+
+    <!-- Navigation (suppressed inside catalog iframe to avoid duplicate navbar) -->
+    <nav class="w-full py-6 px-6 md:px-12 flex justify-between items-center relative z-50 border-b border-[#1A1A1A]/10">
+        <a href="#" class="font-mono text-base tracking-tighter uppercase text-[#1A1A1A] hover:text-[#C4562A] transition-colors">
+            RENATO LIMA
+        </a>
+        
+        <!-- Desktop Nav (Letter spacing increased to 3px) -->
+        <div class="hidden md:flex space-x-10 font-mono text-xs uppercase tracking-[3px] text-[#1A1A1A]/80">
+            <a href="#" class="nav-link pb-1">Home</a>
+            <a href="#about" class="nav-link pb-1">About</a>
+            <a href="#projects" class="nav-link pb-1">Projects</a>
+            <a href="#contact" class="nav-link pb-1">Contact</a>
+        </div>
+
+        <!-- Mobile Menu Icon -->
+        <button class="md:hidden text-[#1A1A1A]">
+            <iconify-icon icon="solar:hamburger-menu-linear" width="24" height="24"></iconify-icon>
+        </button>
+    </nav>
+
+    <!-- Hero Section (Compact Padding) -->
+    <section class="px-6 md:px-12 max-w-[1400px] mx-auto py-12 lg:py-16 fade-up">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+            
+            <!-- Left: Typography -->
+            <div class="w-full z-10">
+                <h1 class="font-display text-6xl md:text-8xl lg:text-[8rem] text-[#1A1A1A] leading-[0.9] tracking-tight mb-8">
+                    Renato Lima
+                </h1>
+                <!-- Styled Button -->
+                <a href="#contact" class="inline-flex items-center gap-3 bg-[#C4562A] text-[#F5F0E8] font-mono uppercase tracking-widest text-xs px-12 py-8 btn-fill border border-[#C4562A] hover:border-[#1A1A1A] transition-colors w-fit">
+                    Meus Contatos <iconify-icon icon="solar:arrow-right-linear" width="16" height="16"></iconify-icon>
+                </a>
+            </div>
+
+            <!-- Right: Imagery -->
+            <div class="w-full flex justify-center lg:justify-end">
+                <div class="flex flex-col w-full max-w-[400px]">
+                    <!-- Circular Image Crop -->
+                    <div class="group relative w-full aspect-square rounded-full border border-[#C4562A] p-2 transition-transform duration-500 ease-out hover:scale-110 cursor-pointer">
+                        <div class="w-full h-full rounded-full overflow-hidden border border-[#1A1A1A]/10">
+                            <img src="assets/hero-portrait.png" alt="Renato Lima" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 ease-out">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Client Marquee Ticker (Spacious Padding) -->
+    <section class="py-24 lg:py-32 fade-up">
+        <div class="marquee-container py-5">
+            <div class="marquee-content font-mono text-sm tracking-widest text-[#1A1A1A]/80 uppercase">
+                <!-- Group 1 -->
+                <span class="px-6">FECAP</span><span class="text-[#C4562A] opacity-50">•</span>
+                <span class="px-6">Zion</span><span class="text-[#C4562A] opacity-50">•</span>
+                <span class="px-6">Preludio</span><span class="text-[#C4562A] opacity-50">•</span>
+                <span class="px-6">Front 30</span><span class="text-[#C4562A] opacity-50">•</span>
+                <span class="px-6">Gestão Feedback</span><span class="text-[#C4562A] opacity-50">•</span>
+                <span class="px-6">Agenda Inteligente</span><span class="text-[#C4562A] opacity-50">•</span>
+                <span class="px-6">Sky Jump</span><span class="text-[#C4562A] opacity-50">•</span>
+                <span class="px-6">FECAP</span><span class="text-[#C4562A] opacity-50">•</span>
+                <span class="px-6">Zion</span><span class="text-[#C4562A] opacity-50">•</span>
+                <span class="px-6">Preludio</span><span class="text-[#C4562A] opacity-50">•</span>
+                <span class="px-6">Front 30</span><span class="text-[#C4562A] opacity-50">•</span>
+                <span class="px-6">Gestão Feedback</span><span class="text-[#C4562A] opacity-50">•</span>
+                <span class="px-6">Agenda Inteligente</span><span class="text-[#C4562A] opacity-50">•</span>
+                <span class="px-6">Sky Jump</span><span class="text-[#C4562A] opacity-50">•</span>
+                <!-- Group 2 (Duplicate for seamless loop) -->
+                <span class="px-6">FECAP</span><span class="text-[#C4562A] opacity-50">•</span>
+                <span class="px-6">Zion</span><span class="text-[#C4562A] opacity-50">•</span>
+                <span class="px-6">Preludio</span><span class="text-[#C4562A] opacity-50">•</span>
+                <span class="px-6">Front 30</span><span class="text-[#C4562A] opacity-50">•</span>
+                <span class="px-6">Gestão Feedback</span><span class="text-[#C4562A] opacity-50">•</span>
+                <span class="px-6">Agenda Inteligente</span><span class="text-[#C4562A] opacity-50">•</span>
+                <span class="px-6">Sky Jump</span><span class="text-[#C4562A] opacity-50">•</span>
+                <span class="px-6">FECAP</span><span class="text-[#C4562A] opacity-50">•</span>
+                <span class="px-6">Zion</span><span class="text-[#C4562A] opacity-50">•</span>
+                <span class="px-6">Preludio</span><span class="text-[#C4562A] opacity-50">•</span>
+                <span class="px-6">Front 30</span><span class="text-[#C4562A] opacity-50">•</span>
+                <span class="px-6">Gestão Feedback</span><span class="text-[#C4562A] opacity-50">•</span>
+                <span class="px-6">Agenda Inteligente</span><span class="text-[#C4562A] opacity-50">•</span>
+                <span class="px-6">Sky Jump</span><span class="text-[#C4562A] opacity-50">•</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- About / Bio Section (Compact Padding) -->
+    <section id="about" class="py-12 lg:py-16 px-6 md:px-12 max-w-[1400px] mx-auto fade-up">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24 items-center">
+            
+            <!-- Left: Text content -->
+            <div class="lg:col-span-8 space-y-6">
+                <h2 class="font-mono text-xs uppercase tracking-widest text-[#C4562A] mb-8">SOBRE MIM &amp; FORMAÇÃO</h2>
+                <p class="font-body text-xl md:text-2xl text-[#1A1A1A] leading-relaxed">
+                    Da paixão por jogos e 3D à Inteligência Artificial e ao Desenvolvimento Full Stack.
+                </p>
+                <p class="font-body text-lg text-[#1A1A1A]/70 leading-relaxed">
+                    Nascido e criado na Zona Sul de São Paulo, iniciei minha trajetória acadêmica na escola Prelúdio. Meu interesse pela criação digital começou cedo com um curso de 2 anos na Zion, onde desenvolvi habilidades práticas em programação de jogos e design 3D. Em 2026, dei um passo estratégico rumo ao futuro: iniciei o Ensino Médio integrado ao curso Técnico em Inteligência Artificial na FECAP. Meu objetivo é aprofundar meu domínio técnico, construir uma base sólida em IA e evoluir para atuar como desenvolvedor full stack, unindo inteligência de dados, lógica back-end e interfaces modernas.
+                </p>
+                
+                <div class="pt-6">
+                    <a href="#projects" class="inline-flex items-center gap-3 text-[#1A1A1A] hover:text-[#C4562A] font-mono uppercase tracking-widest text-xs transition-colors nav-link w-fit pb-1">
+                        VER MEUS PROJETOS <iconify-icon icon="solar:arrow-right-linear" width="16" height="16"></iconify-icon>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Right: Studio Specs / Accents -->
+            <div class="lg:col-span-4 bg-[#1A1A1A] text-[#F5F0E8] p-10 flex flex-col gap-10 shadow-lg">
+                <div>
+                    <iconify-icon icon="solar:microphone-3-linear" class="text-[#C4562A] text-4xl mb-4"></iconify-icon>
+                    <h3 class="font-display text-3xl mb-3">Foco Atual</h3>
+                    <p class="font-body text-sm text-[#F5F0E8]/70 leading-relaxed">
+                        Ensino Médio &amp; Técnico em IA na FECAP (Início em 2026) — Explorando algoritmos, dados e automação.
+                    </p>
+                </div>
+                
+                <div class="w-full h-px bg-[#F5F0E8]/20"></div>
+                
+                <div>
+                    <iconify-icon icon="solar:global-linear" class="text-[#C4562A] text-4xl mb-4"></iconify-icon>
+                    <h3 class="font-display text-3xl mb-3">Metas &amp; Competências</h3>
+                    <ul class="font-body text-sm text-[#F5F0E8]/70 space-y-2">
+                        <li class="flex items-center gap-2"><div class="w-1.5 h-1.5 bg-[#C4562A] rounded-full flex-shrink-0"></div> Desenvolvimento Full Stack</li>
+                        <li class="flex items-center gap-2"><div class="w-1.5 h-1.5 bg-[#C4562A] rounded-full flex-shrink-0"></div> Inteligência Artificial &amp; Machine Learning</li>
+                        <li class="flex items-center gap-2"><div class="w-1.5 h-1.5 bg-[#C4562A] rounded-full flex-shrink-0"></div> Lógica de Programação &amp; Modelagem 3D (Zion)</li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Projects / Demos Section (Dark Mode Transition) -->
+    <section id="projects" class="py-24 lg:py-32 px-6 md:px-12 bg-[#1A1A1A] text-[#F5F0E8] mt-12">
+        <div class="max-w-[1400px] mx-auto fade-up">
+            
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-8">
+                <div>
+                    <h2 class="font-mono text-xs uppercase tracking-widest text-[#C4562A] mb-6">PROJETOS &amp; DESENVOLVIMENTO</h2>
+                    <h3 class="font-display text-5xl md:text-7xl text-[#F5F0E8] leading-[1.1]">
+                        Projetos em<br>Destaque
+                    </h3>
+                </div>
+                <a href="https://github.com/xxzre" target="_blank" rel="noopener noreferrer" class="hidden md:inline-flex items-center gap-3 bg-transparent text-[#F5F0E8] font-mono uppercase tracking-widest text-xs px-10 py-6 border border-[#F5F0E8]/30 hover:border-[#C4562A] hover:bg-[#C4562A] transition-all duration-300 rounded-full">
+                    Ver GitHub Completo
+                </a>
+            </div>
+
+            <!-- Demo Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                
+                <!-- Demo Item 1 -->
+                <div class="group relative border border-[#F5F0E8]/20 p-8 hover:border-[#C4562A] transition-colors duration-300 bg-[#1A1A1A] flex flex-col justify-between">
+                    <div class="flex justify-between items-start mb-16">
+                        <span class="font-mono text-[0.65rem] tracking-widest uppercase text-[#F5F0E8]/50 border border-[#F5F0E8]/20 px-3 py-1 rounded-full">CORPORATIVO / RH</span>
+                        <a href="https://github.com/xxzre/Gestao_Feedback" target="_blank" rel="noopener noreferrer" aria-label="Abrir repositório Gestão Feedback no GitHub" class="w-14 h-14 rounded-full border border-[#F5F0E8]/30 flex items-center justify-center text-[#F5F0E8] group-hover:bg-[#C4562A] group-hover:border-[#C4562A] transition-all duration-300">
+                            <iconify-icon icon="solar:play-linear" width="24" height="24" class="ml-1"></iconify-icon>
+                        </a>
+                    </div>
+                    <div>
+                        <h4 class="font-display text-3xl mb-3 text-[#F5F0E8]">Gestão Feedback</h4>
+                        <p class="font-body text-sm text-[#F5F0E8]/60 leading-relaxed">Aplicação voltada para entender dinâmicas interpessoais e aprimorar a cultura de feedback contínuo entre equipes e lideranças, idealizada para o contexto da GOL Linhas Aéreas.</p>
+                    </div>
+                    <!-- Progress Bar (Visual Only) -->
+                    <div class="absolute bottom-0 left-0 h-1 bg-[#C4562A] w-0 group-hover:w-full transition-all duration-700 ease-in-out"></div>
+                </div>
+
+                <!-- Demo Item 2 -->
+                <div class="group relative border border-[#F5F0E8]/20 p-8 hover:border-[#C4562A] transition-colors duration-300 bg-[#1A1A1A] flex flex-col justify-between">
+                    <div class="flex justify-between items-start mb-16">
+                        <span class="font-mono text-[0.65rem] tracking-widest uppercase text-[#F5F0E8]/50 border border-[#F5F0E8]/20 px-3 py-1 rounded-full">GESTÃO &amp; PRODUTIVIDADE</span>
+                        <a href="https://github.com/xxzre/Agenda-Inteligente" target="_blank" rel="noopener noreferrer" aria-label="Abrir repositório Agenda Inteligente no GitHub" class="w-14 h-14 rounded-full border border-[#F5F0E8]/30 flex items-center justify-center text-[#F5F0E8] group-hover:bg-[#C4562A] group-hover:border-[#C4562A] transition-all duration-300">
+                            <iconify-icon icon="solar:play-linear" width="24" height="24" class="ml-1"></iconify-icon>
+                        </a>
+                    </div>
+                    <div>
+                        <h4 class="font-display text-3xl mb-3 text-[#F5F0E8]">Agenda Inteligente</h4>
+                        <p class="font-body text-sm text-[#F5F0E8]/60 leading-relaxed">Sistema desenvolvido para otimizar o controle, sincronização e organização de cronogramas e reuniões entre gestores e colaboradores corporativos da GOL.</p>
+                    </div>
+                    <div class="absolute bottom-0 left-0 h-1 bg-[#C4562A] w-0 group-hover:w-full transition-all duration-700 ease-in-out"></div>
+                </div>
+
+                <!-- Demo Item 3 -->
+                <div class="group relative border border-[#F5F0E8]/20 p-8 hover:border-[#C4562A] transition-colors duration-300 bg-[#1A1A1A] flex flex-col justify-between">
+                    <div class="flex justify-between items-start mb-16">
+                        <span class="font-mono text-[0.65rem] tracking-widest uppercase text-[#F5F0E8]/50 border border-[#F5F0E8]/20 px-3 py-1 rounded-full">GAME DEV</span>
+                        <a href="https://github.com/xxzre/Sky_Jump_Challenge" target="_blank" rel="noopener noreferrer" aria-label="Abrir repositório Sky Jump Challenge no GitHub" class="w-14 h-14 rounded-full border border-[#F5F0E8]/30 flex items-center justify-center text-[#F5F0E8] group-hover:bg-[#C4562A] group-hover:border-[#C4562A] transition-all duration-300">
+                            <iconify-icon icon="solar:play-linear" width="24" height="24" class="ml-1"></iconify-icon>
+                        </a>
+                    </div>
+                    <div>
+                        <h4 class="font-display text-3xl mb-3 text-[#F5F0E8]">Sky Jump Challenge</h4>
+                        <p class="font-body text-sm text-[#F5F0E8]/60 leading-relaxed">Primeira atividade prática avaliativa: um jogo no qual um porquinho salta entre plataformas dinâmicas e sobe verticalmente conforme o jogador avança de pontuação.</p>
+                    </div>
+                    <div class="absolute bottom-0 left-0 h-1 bg-[#C4562A] w-0 group-hover:w-full transition-all duration-700 ease-in-out"></div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Large CTA / Contact Section -->
+    <section id="contact" class="py-12 lg:py-24 px-6 md:px-12 max-w-[1400px] mx-auto fade-up mb-12">
+        <div class="bg-[#C4562A] p-12 md:p-24 text-center flex flex-col items-center shadow-xl relative overflow-hidden">
+            <!-- Decorative background element -->
+            <iconify-icon icon="solar:soundwave-circle-bold" class="text-[#F5F0E8]/5 text-[30rem] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none"></iconify-icon>
+            
+            <h2 class="font-display text-5xl md:text-7xl lg:text-8xl text-[#F5F0E8] mb-6 relative z-10">
+                Entre em contato<br>comigo.
+            </h2>
+            <p class="font-body text-xl text-[#F5F0E8]/90 mb-12 max-w-2xl relative z-10">
+                Dando os primeiros passos no desenvolvimento técnico com foco em Inteligência Artificial, sempre disposto a aprender novas ferramentas e transformar desafios em projetos práticos.
+            </p>
+            
+            <div class="flex flex-col sm:flex-row gap-6 relative z-10">
+                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=renato.lima180111@gmail.com" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-3 bg-[#1A1A1A] text-[#F5F0E8] font-mono uppercase tracking-widest text-xs px-12 py-6 btn-fill border border-[#1A1A1A] hover:border-[#F5F0E8] transition-colors shadow-lg">
+                    <iconify-icon icon="solar:letter-linear" width="18" height="18"></iconify-icon> Email
+                </a>
+                <a href="https://wa.me/5511985679191?text=Entre%20em%20contato%20comigo%20ou%20tire%20duvidas%20por%20este%20contato" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-3 bg-transparent text-[#F5F0E8] font-mono uppercase tracking-widest text-xs px-12 py-6 border border-[#F5F0E8] hover:bg-[#F5F0E8] hover:text-[#C4562A] transition-colors rounded-full shadow-lg">
+                    <iconify-icon icon="mdi:whatsapp" width="18" height="18"></iconify-icon> Whatssapp
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Expanded Footer -->
+    <footer class="border-t border-[#1A1A1A]/10 bg-[#F5F0E8] pt-16 pb-8 px-6 md:px-12 mt-12">
+        <div class="max-w-[1400px] mx-auto grid grid-cols-1 md:grid-cols-12 gap-12 mb-16">
+            <!-- Brand -->
+            <div class="md:col-span-4">
+                <div class="flex items-center gap-2 font-mono text-sm tracking-tighter uppercase text-[#1A1A1A] mb-6">
+                    <iconify-icon icon="solar:microphone-3-bold" class="text-[#C4562A] text-xl"></iconify-icon>
+                    RENATO LIMA
+                </div>
+                <div class="flex gap-6">
+                    <a href="https://www.instagram.com/oliveirxxzz_?mdxt=dmxhY21oajhqZGRl&utm_source=qr" target="_blank" rel="noopener noreferrer" class="text-[#1A1A1A] hover:text-[#C4562A] transition-colors duration-300">
+                        <iconify-icon icon="mdi:instagram" width="20"></iconify-icon>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Spacer -->
+            <div class="hidden md:block md:col-span-4"></div>
+
+            <!-- Links -->
+            <div class="md:col-span-2">
+                <ul class="space-y-4 font-mono text-xs uppercase tracking-widest text-[#1A1A1A]/80">
+                    <li><a href="#" class="hover:text-[#C4562A] transition-colors">Home</a></li>
+                    <li><a href="#about" class="hover:text-[#C4562A] transition-colors">About</a></li>
+                    <li><a href="#projects" class="hover:text-[#C4562A] transition-colors">Projects</a></li>
+                </ul>
+            </div>
+            
+            <div class="md:col-span-2">
+                <ul class="space-y-4 font-mono text-xs uppercase tracking-widest text-[#1A1A1A]/80">
+                    <li><a href="#contact" class="hover:text-[#C4562A] transition-colors">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Intersection Observer Script for scroll animations -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const observerOptions = {
+                threshold: 0.15,
+                rootMargin: "0px 0px -50px 0px"
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.fade-up').forEach(element => {
+                observer.observe(element);
+            });
+        });
+    </script>
+</body>
+</html>
